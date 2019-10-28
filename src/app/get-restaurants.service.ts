@@ -9,13 +9,14 @@ import { Config } from 'protractor';
 export class GetRestaurantsService {
 
   API_KEY:string ="e06f5b3da2be4501af757078cf03a985";
+  API_URL = "/api"
   constructor(private httpClient: HttpClient) { }
 
   public getSearchPlaces(searchValue){
     console.log("SearchValue FROM my Service", searchValue)
     let params = new HttpParams();
     params = params.append('searchValue', searchValue );
-    return this.httpClient.get<Config>("http://localhost:3000/api/search/places",{params: params});
+    return this.httpClient.get<Config>('$(this.API_URL)/search/places',{params: params});
   }
 
   public getPlacesId(id){
